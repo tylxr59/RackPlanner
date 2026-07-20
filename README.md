@@ -11,11 +11,12 @@ Server Rack Planner runs entirely in the browser. It has no build step, external
 - Assign common server, network, storage, patch-panel, power, and accessory types
 - Reserve multiple contiguous rack units for a device
 - Prevent overlapping or out-of-bounds equipment placement
+- See used capacity, open rack-unit ranges, and an equipment inventory at a glance
 - Save rack and equipment notes
 - Automatically preserve the current plan in browser storage
 - Export plans to JSON and import them later
 - Follow the system color scheme with a manual light/dark theme toggle
-- Use a responsive layout on desktop and mobile browsers
+- Use an accessible, responsive layout on desktop and mobile browsers
 
 ## Getting started
 
@@ -49,9 +50,9 @@ Then visit [http://localhost:8000](http://localhost:8000).
 3. Enter a name, type, size, location, and any optional notes.
 4. Click occupied equipment to edit, move, resize, or delete it.
 5. Add general configuration details in the **Notes** section.
-6. Use **Export JSON** to create a portable backup of the plan.
+6. Use **Export** to create a portable JSON backup of the plan.
 
-To restore a saved plan, select **Import JSON** and choose a previously exported file. **Clear All** removes every equipment item from the current rack after confirmation.
+To restore a saved plan, select **Import** and choose a previously exported file. **Clear** removes every equipment item from the current rack after confirmation.
 
 > [!NOTE]
 > Changing to a smaller rack removes equipment that no longer fits, but only after you confirm the change.
@@ -64,9 +65,11 @@ An exported plan has this structure:
 
 ```json
 {
+  "schemaVersion": 2,
   "rackSize": 42,
   "equipment": [
     {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
       "name": "Core Switch",
       "type": "Core Switch",
       "size": 1,
