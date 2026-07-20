@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Rack Planner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1>Server Rack Planner</h1>
+                <button id="theme-toggle" class="btn btn-theme" aria-label="Toggle dark mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+            <div class="controls">
+                <div class="control-group">
+                    <label for="rack-size">Rack Size:</label>
+                    <select id="rack-size">
+                        <option value="2">2U</option>
+                        <option value="4">4U</option>
+                        <option value="8">8U</option>
+                        <option value="12">12U</option>
+                        <option value="16">16U</option>
+                        <option value="20">20U</option>
+                        <option value="24">24U</option>
+                        <option value="32">32U</option>
+                        <option value="42" selected>42U</option>
+                        <option value="48">48U</option>
+                        <option value="52">52U</option>
+                        <option value="64">64U</option>
+                    </select>
+                </div>
+                <button id="export-btn" class="btn">Export JSON</button>
+                <button id="import-btn" class="btn">Import JSON</button>
+                <button id="clear-btn" class="btn btn-secondary">Clear All</button>
+            </div>
+        </header>
+
+        <div class="rack-wrapper">
+            <div class="rack-info">
+                <p id="rack-title">42U Server Rack</p>
+            </div>
+            <div id="rack-container" class="rack-container">
+                <!-- Rack will be generated here -->
+            </div>
+        </div>
+
+        <div class="notes-section">
+            <label for="rack-notes">Notes:</label>
+            <textarea id="rack-notes" rows="6" placeholder="Add general notes about this rack configuration..."></textarea>
+        </div>
+    </div>
+
+    <!-- Modal for adding/editing equipment -->
+    <div id="equipment-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Add Equipment</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="equipment-name">Equipment Name:</label>
+                    <input type="text" id="equipment-name" placeholder="e.g., Web Server 01">
+                </div>
+                
+                <div class="form-group">
+                    <label for="equipment-type">Type:</label>
+                    <select id="equipment-type">
+                        <option value="">- Select Type -</option>
+                        <optgroup label="Server">
+                            <option value="Blade Server">Blade Server</option>
+                            <option value="Rack Server">Rack Server</option>
+                            <option value="Tower Server">Tower Server</option>
+                            <option value="Storage Server">Storage Server</option>
+                            <option value="Database Server">Database Server</option>
+                            <option value="Application Server">Application Server</option>
+                            <option value="Web Server">Web Server</option>
+                        </optgroup>
+                        <optgroup label="Network">
+                            <option value="Network Switch">Network Switch</option>
+                            <option value="Core Switch">Core Switch</option>
+                            <option value="PoE Switch">PoE Switch</option>
+                            <option value="Fiber Switch">Fiber Switch</option>
+                            <option value="KVM Switch">KVM Switch</option>
+                            <option value="Router">Router</option>
+                            <option value="Firewall">Firewall</option>
+                            <option value="Load Balancer">Load Balancer</option>
+                            <option value="Wireless Controller">Wireless Controller</option>
+                        </optgroup>
+                        <optgroup label="Storage">
+                            <option value="NAS">NAS</option>
+                            <option value="SAN">SAN</option>
+                            <option value="Disk Array">Disk Array</option>
+                            <option value="Tape Drive">Tape Drive</option>
+                            <option value="Backup Appliance">Backup Appliance</option>
+                        </optgroup>
+                        <optgroup label="Patch Panel">
+                            <option value="Cat5e Patch Panel">Cat5e Patch Panel</option>
+                            <option value="Cat6 Patch Panel">Cat6 Patch Panel</option>
+                            <option value="Cat6a Patch Panel">Cat6a Patch Panel</option>
+                            <option value="Fiber Patch Panel">Fiber Patch Panel</option>
+                            <option value="Fiber Enclosure">Fiber Enclosure</option>
+                        </optgroup>
+                        <optgroup label="Power">
+                            <option value="UPS">UPS</option>
+                            <option value="PDU">PDU</option>
+                            <option value="Switched PDU">Switched PDU</option>
+                            <option value="Metered PDU">Metered PDU</option>
+                            <option value="Power Distribution">Power Distribution</option>
+                        </optgroup>
+                        <optgroup label="Accessories">
+                            <option value="Shelf">Shelf</option>
+                            <option value="Rack Tray">Rack Tray</option>
+                            <option value="Sliding Shelf">Sliding Shelf</option>
+                            <option value="Vented Shelf">Vented Shelf</option>
+                            <option value="Cable Management">Cable Management</option>
+                            <option value="Horizontal Cable Manager">Horizontal Cable Manager</option>
+                            <option value="Vertical Cable Manager">Vertical Cable Manager</option>
+                            <option value="Blank Panel">Blank Panel</option>
+                            <option value="Vented Panel">Vented Panel</option>
+                            <option value="Spacer Panel">Spacer Panel</option>
+                            <option value="Brush Panel">Brush Panel</option>
+                            <option value="Cooling Fan Tray">Cooling Fan Tray</option>
+                            <option value="Monitor/Keyboard Drawer">Monitor/Keyboard Drawer</option>
+                        </optgroup>
+                        <optgroup label="Other">
+                            <option value="Console Server">Console Server</option>
+                            <option value="Media Converter">Media Converter</option>
+                            <option value="Environmental Monitor">Environmental Monitor</option>
+                            <option value="Placeholder">Placeholder</option>
+                            <option value="Reserved Space">Reserved Space</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="equipment-size">Size (U):</label>
+                    <input type="number" id="equipment-size" min="1" max="64" value="1">
+                </div>
+
+                <div class="form-group">
+                    <label for="equipment-notes">Notes:</label>
+                    <textarea id="equipment-notes" rows="3" placeholder="Additional notes or configuration details"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="rack-location">Rack Location:</label>
+                    <select id="rack-location">
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                </div>
+
+                <div class="form-group" id="original-position-info" style="display: none;">
+                    <p class="info-text">Original position: <strong id="original-position">U1</strong></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="delete-equipment-btn" class="btn btn-danger" style="display: none;">Delete</button>
+                <button id="save-equipment-btn" class="btn btn-primary">Save</button>
+                <button id="cancel-equipment-btn" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden file input for import -->
+    <input type="file" id="file-input" accept=".json" style="display: none;">
+
+    <script src="scripts.js"></script>
+</body>
+</html>
