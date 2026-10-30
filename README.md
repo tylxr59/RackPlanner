@@ -38,7 +38,7 @@ RackPlanner is a simple, browser-based tool for planning equipment placement in 
 
 ## 🎯 Features
 
-|                              |                                                                                            |
+| Feature                      | What it does                                                                               |
 | ---------------------------- | ------------------------------------------------------------------------------------------ |
 | 📏 **Any rack size**         | Plan racks from 2U to 64U.                                                                 |
 | 🧱 **Real placement rules**  | Reserve contiguous units for multi-U devices, with no overlaps or out-of-bounds placement. |
