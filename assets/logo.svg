@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="RackPlanner logo">
+  <rect width="128" height="128" rx="28" fill="#1769aa"/>
+  <rect x="30" y="18" width="68" height="92" rx="6" fill="none" stroke="#fff" stroke-width="6"/>
+  <g fill="#fff">
+    <rect x="40" y="30" width="48" height="14" rx="3"/>
+    <rect x="40" y="50" width="48" height="14" rx="3" opacity="0.55"/>
+    <rect x="40" y="70" width="48" height="26" rx="3"/>
+  </g>
+  <g fill="#5ee0a0">
+    <circle cx="80" cy="37" r="3"/>
+    <circle cx="80" cy="83" r="3"/>
+  </g>
+</svg>

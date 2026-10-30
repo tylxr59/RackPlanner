@@ -1,26 +1,61 @@
-# Server Rack Planner
+<p align="center">
+  <img src="assets/logo.png" alt="RackPlanner logo" width="112" height="112">
+</p>
 
-A simple, browser-based tool for planning equipment placement in a server rack. Choose a rack size, add equipment to available rack units, keep configuration notes, and export the finished layout as JSON.
+<h1 align="center">RackPlanner</h1>
 
-Server Rack Planner runs entirely in the browser. It has no build step, external dependencies, account requirement, or backend service.
+<p align="center">
+  Plan your server rack in the browser. No backend, no build step, no spreadsheet gymnastics.
+</p>
 
-## Features
+<p align="center">
+  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/github/license/tylxr59/RackPlanner"></a>
+  <a href="#-quick-start"><img alt="No build step" src="https://img.shields.io/badge/build-none-2ea44f"></a>
+</p>
 
-- Plan racks from 2U to 64U
-- Add, edit, move, and delete rack-mounted equipment
-- Assign common server, network, storage, patch-panel, power, and accessory types
-- Reserve multiple contiguous rack units for a device
-- Prevent overlapping or out-of-bounds equipment placement
-- See used capacity, open rack-unit ranges, and an equipment inventory at a glance
-- Save rack and equipment notes
-- Automatically preserve the current plan in browser storage
-- Export plans to JSON and import them later
-- Follow the system color scheme with a manual light/dark theme toggle
-- Use an accessible, responsive layout on desktop and mobile browsers
+<p align="center">
+  <a href="#-features">Features</a> ·
+  <a href="#-quick-start">Quick start</a> ·
+  <a href="#-usage">Usage</a> ·
+  <a href="#-data-and-privacy">Data and privacy</a>
+</p>
 
-## Getting started
+---
 
-No installation or build process is required.
+## 🗄️ RackPlanner
+
+RackPlanner is a simple, browser-based tool for planning equipment placement in a server rack. Choose a rack size, add equipment to available rack units, keep configuration notes, and export the finished layout as JSON.
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/screenshot-dark.png">
+    <img src="assets/screenshot-light.png" alt="RackPlanner showing a 24U homelab rack" width="800">
+  </picture>
+</p>
+
+> [!NOTE]
+> RackPlanner runs entirely in the browser. It has no build step, dependencies, account, or backend.
+
+## 🎯 Features
+
+|                              |                                                                                            |
+| ---------------------------- | ------------------------------------------------------------------------------------------ |
+| 📏 **Any rack size**         | Plan racks from 2U to 64U.                                                                 |
+| 🧱 **Real placement rules**  | Reserve contiguous units for multi-U devices, with no overlaps or out-of-bounds placement. |
+| 🏷️ **Equipment types**       | Common server, network, storage, patch-panel, power, and accessory types.                  |
+| 📊 **Capacity at a glance**  | Used and free units, open ranges, and a full equipment inventory.                          |
+| 📝 **Notes**                 | Notes for the rack as a whole and for each device.                                         |
+| 💾 **Autosave**              | The current plan is kept in browser storage automatically.                                 |
+| 📦 **Import and export**     | Save plans as JSON and load them again later.                                              |
+| 🌗 **Light and dark themes** | Follows your system, with a manual toggle.                                                 |
+| 📱 **Responsive**            | Accessible layout on desktop and mobile browsers.                                          |
+
+## 📋 Requirements
+
+- A modern web browser (current Firefox, Chrome, Edge, or Safari).
+- Optional: Python 3 to serve it locally.
+
+## 🚀 Quick start
 
 ### Open directly
 
@@ -43,7 +78,7 @@ python3 -m http.server 8000
 
 Then visit [http://localhost:8000](http://localhost:8000).
 
-## Usage
+## 🧭 Usage
 
 1. Select the rack size from the **Rack Size** menu.
 2. Click an empty rack unit to add equipment at that position.
@@ -57,7 +92,7 @@ To restore a saved plan, select **Import** and choose a previously exported file
 > [!NOTE]
 > Changing to a smaller rack removes equipment that no longer fits, but only after you confirm the change.
 
-## Data and privacy
+## 🔐 Data and privacy
 
 Rack data is stored locally in the browser using `localStorage`. Nothing is sent to a server by this application. Browser data can be cleared by browser settings, private-browsing behavior, or storage cleanup, so export important configurations as JSON backups.
 
@@ -82,23 +117,33 @@ An exported plan has this structure:
 }
 ```
 
-## Project structure
+## 🩺 Troubleshooting
+
+| Symptom                                       | Fix                                                                                                    |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| A saved plan disappeared                      | Browser storage was cleared or you're in a private window. Import your last JSON export.               |
+| "The saved plan was invalid"                  | The stored plan couldn't be read, so a new rack opened. Import a JSON export to restore it.            |
+| Equipment vanished after changing rack size   | Shrinking the rack removes equipment that no longer fits, after you confirm. Import an export to undo. |
+| Something behaves oddly when opened as a file | Serve it over HTTP instead. See [Run a local server](#run-a-local-server).                             |
+
+## 👋 Development
+
+There's nothing to install or build. Edit the files, then reload the page in your browser.
 
 ```text
 RackPlanner/
 ├── index.html   # Application markup and equipment form
 ├── scripts.js   # Rack state, rendering, persistence, and import/export
 ├── styles.css   # Responsive light and dark themes
+├── assets/      # Logo and screenshots
 ├── LICENSE      # MIT license
 └── README.md
 ```
-
-## Contributing
 
 Contributions are welcome. Fork the repository, create a focused branch, make and test your changes in a modern browser, and open a pull request describing what changed.
 
 When reporting a bug, include the browser and operating system, steps to reproduce it, and the behavior you expected.
 
-## License
+## 📃 License
 
-Server Rack Planner is available under the [MIT License](LICENSE).
+RackPlanner is available under the [MIT License](LICENSE).
