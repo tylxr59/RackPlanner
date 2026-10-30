@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/github/license/tylxr59/RackPlanner"></a>
-  <a href="#-quick-start"><img alt="No build step" src="https://img.shields.io/badge/build-none-2ea44f"></a>
+  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-97ca00"></a>
+  <a href="#-quick-start"><img alt="Runs in your browser" src="https://img.shields.io/badge/runs%20in-your%20browser-1769aa"></a>
 </p>
 
 <p align="center">
@@ -21,8 +21,6 @@
 </p>
 
 ---
-
-## 🗄️ RackPlanner
 
 RackPlanner is a simple, browser-based tool for planning equipment placement in a server rack. Choose a rack size, add equipment to available rack units, keep configuration notes, and export the finished layout as JSON.
 
